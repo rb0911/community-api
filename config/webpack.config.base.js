@@ -1,11 +1,11 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
+const { webpack } = require('webpack')
 
 debugger
 const webpackconfig = {
     target: 'node',
-    mode: 'development',
     entry: {
         server: path.join(__dirname, 'src/index.js')
     },
@@ -13,7 +13,6 @@ const webpackconfig = {
         filename: '[name].bundle.js',
         path: path.join(__dirname, './dist')
     },
-    devtool: 'eval-source-map',
     module: {
         rules: [
             {
@@ -26,8 +25,14 @@ const webpackconfig = {
         ]
     },
     externals: [nodeExternals()],
-    plugins: [
-        new CleanWebpackPlugin()
+    plugins: [,
+        new CleanWebpackPlugin(),
+        new webpack.DefinePlugin({ //可以创建全局常量，打包时候使用
+          'process.env': {
+            NODE_ENV: (process.env.NODE_ENV === 'production' || 
+            process.env.NODE_ENV === 'prod') ? "'production'" : "'development'"
+          }
+        })
     ],
     // node: {
     //     console: true,
@@ -40,7 +45,6 @@ const webpackconfig = {
     //     path: true
     // }
 }
-console.log(webpackconfig)
 
 // 可以用node 调试webpack
 // npx node --inspect-brk ./node_modules/.bin/webpack --progress --config
