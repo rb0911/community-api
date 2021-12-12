@@ -1,10 +1,12 @@
-const webpackMerge = require('webpack-merge')
+const { merge } = require('webpack-merge')
 const baseConfig = require('./webpack.config.base')
 const TerserPlugin = require('terser-webpack-plugin')
 
-const webpackConfig = webpackMerge(baseConfig, {
-  mode: 'prod',
-  stats: { children: false, warning: false},
+const webpackConfig = merge(baseConfig, {
+  mode: 'production',
+  stats: { children: false, 
+    // warning: false
+  },
   optimization: {
     minimizer: [
       new TerserPlugin({
@@ -12,7 +14,7 @@ const webpackConfig = webpackMerge(baseConfig, {
           ecma: undefined,
           parse: {},
           compress: {
-            warning: false,
+            // warning: false,
             drop_console: false, //是否注释掉console
             dead_code: true,
             drop_debugger: true

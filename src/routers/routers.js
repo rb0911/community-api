@@ -1,9 +1,9 @@
 const combineRouters = require('koa-combine-routers')
 
 const arouters = require('./aRouter')
-const brouters = require('./bRouter')
+const PubicController = require('./publicRouter')
 
 module.exports = combineRouters(
     arouters,
-    brouters
+    PubicController
 )

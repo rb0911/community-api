@@ -1,17 +1,18 @@
 const path = require('path')
 const nodeExternals = require('webpack-node-externals')
 const { CleanWebpackPlugin } = require('clean-webpack-plugin')
-const { webpack } = require('webpack')
+const webpack = require('webpack')
+const utils = require('./utils')
 
 debugger
 const webpackconfig = {
     target: 'node',
     entry: {
-        server: path.join(__dirname, 'src/index.js')
+        server: path.join(utils.APP_PATH, 'index.js')
     },
     output: {
         filename: '[name].bundle.js',
-        path: path.join(__dirname, './dist')
+        path: path.join(__dirname, '../dist')
     },
     module: {
         rules: [
@@ -25,7 +26,7 @@ const webpackconfig = {
         ]
     },
     externals: [nodeExternals()],
-    plugins: [,
+    plugins: [
         new CleanWebpackPlugin(),
         new webpack.DefinePlugin({ //可以创建全局常量，打包时候使用
           'process.env': {
