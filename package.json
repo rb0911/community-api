@@ -9,7 +9,8 @@
     "clean": "rimraf dist",
     "build": "cross-env NODE_ENV=prod webpack --config config/webpack.config.prod.js",
     "watch": "cross-env NODE_ENV=dev webpack --watch --progress --hide-modules --config config/webpack.config.dev.js",
-    "start:dist": "npm-run-all -p watch debug"
+    "start:dist": "npm-run-all -p watch debug",
+    "debug": "nodemon --inspect ./dist/server.boundle.js"
   },
   "author": "",
   "license": "ISC",
