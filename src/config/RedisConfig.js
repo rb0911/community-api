@@ -17,11 +17,18 @@ client.on('error', err => {
     console.log('Redis client Error:' + err)
 })
 
-const setValue = (key, value) => {
+const setValue = (key, value, time) => {
+    console.log('-------------redis------------')
+    console.log(key)
     if (typeof value === 'undefined' || value == null || value === '') {
         return
     }
     if (typeof value === 'string') {
+        if (typeof time !== 'undefined') {
+            client.set(key, value, 'EX', time)
+        } else {
+            client.set(key, value)
+        }
         client.set(key, value)
     } else if (typeof value === 'object') {
         Object.keys(value).forEach(item => {
