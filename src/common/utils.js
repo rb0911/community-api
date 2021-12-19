@@ -8,6 +8,8 @@ const checkCode = async (key, value) => {
     } else {
       return false
     }
+  } else {
+    return false
   }
 }
 
