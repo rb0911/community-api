@@ -63,7 +63,7 @@ class LoginController {
         console.log('hello login')
         let token = jsonwebtoken.sign({_id: 'robin'},
         config.JWT_SECERT, {
-          expireIn: '1d'
+          expiresIn: '1d'
         })
 
         ctx.body = {

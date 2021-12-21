@@ -6,7 +6,7 @@ class PubicController {
     async getCaptcha(ctx){
         const body = ctx.request.query
         const newCaptcha = svgCaptcha.create({
-            size: 6,
+            size: 4,
             ignoreChars: '0o1il',
             color: true,
             noise: Math.floor(Math.random() * 3),
